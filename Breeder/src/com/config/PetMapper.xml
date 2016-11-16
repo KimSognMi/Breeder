@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pet">
+
+
+
+	<insert parameterType="PetDTO" id="addPet">
+		insert into pet(
+		p_num,userid,p_kkcnumber,p_name,p_age,p_gender,p_birth,p_type,p_photo,p_feature,mom_kkc,papa_kkc)
+		values( pet_seq.nextval,#{userid},#{p_kkcnumber},#{p_name},#{p_age},
+		#{p_gender},#{p_birth},#{p_type},#{p_photo},#{p_feature},#{mom_kkc},#{papa_kkc})
+	</insert>
+
+
+	<select id="list" resultType="PetDTO" parameterType="String">
+
+		select
+		p_num,userid
+		,p_kkcnumber,p_name,p_age,p_gender,p_birth,p_type,p_photo,p_feature
+		from
+		pet
+		where userid = #{userid}
+	</select>
+
+
+	<select id="mlist" resultType="PetDTO" parameterType="String">
+		select
+		p_num,p_kkcnumber,p_photo, p_name, p_type
+		from pet
+		where userid =
+		#{userid}
+	</select>
+
+	<select resultType="PetDTO" parameterType="string" id="mypage">
+		select
+		p_num,userid,p_kkcnumber,p_name,p_age,p_gender,p_birth,p_type,p_photo,p_feature,mom_kkc,papa_kkc
+		from pet
+		where p_num = #{p_num}
+	</select>
+
+
+
+
+	<update id="updatePet" parameterType="PetDTO">
+		update pet
+		set
+		p_name=#{p_name},
+		p_age=#{p_age},
+		p_gender=#{p_gender},
+		p_birth=#{p_birth},
+		p_type=#{p_type},
+		p_photo=#{p_photo},
+		p_feature=#{p_feature},
+		mom_kkc=#{mom_kkc},
+		papa_kkc=#{papa_kkc}
+		where
+		p_num = #{p_num}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		delete from pet
+		where p_num =
+		#{p_num}
+	</delete>
+
+	<select id="petdetail" parameterType="string" resultType="PetDTO">
+		select
+		p_num, userid, p_kkcnumber, p_name, p_age, p_gender, p_birth, p_type,
+		p_photo, p_feature,mom_kkc,papa_kkc
+		from pet
+		where userid=#{userid}
+	</select>
+
+	<select id="pettree" parameterType="string" resultType="PetTreeDTO">
+		select p.p_num,p.p_name ,p.p_photo ,e.p_photo as mom_photo,t.p_photo as papa_photo,ee.p_photo as gmom_photo,tt.p_photo as gpapa_photo
+		,pp.p_photo as pp_photo, ep.p_photo as mp_photo
+		from pet p,pet e,pet t,pet ee,pet tt,pet pp,pet ep
+		where p.mom_kkc=e.p_kkcnumber(+) and p.papa_kkc=t.p_kkcnumber(+) and
+		e.mom_kkc=ee.p_kkcnumber(+) and e.papa_kkc=tt.p_kkcnumber(+)
+		and p.mom_kkc=pp.mom_kkc(+) and p.p_photo!=pp.p_photo(+)
+		and e.mom_kkc=ep.mom_kkc(+) and e.p_photo!=ep.p_photo(+) and p.p_num =
+		#{p_num}
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

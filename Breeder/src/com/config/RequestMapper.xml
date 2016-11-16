@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="request">
+
+	<insert id="request" parameterType="RequestDTO">
+		insert into request(
+		r_num,userid,p_num,r_content,agree,requestid)
+		values (
+		request_seq.nextval,
+		#{userid},#{p_num},#{r_content},#{agree},#{requestid})
+	</insert>
+
+	<select id="requestlist2" resultType="RequestPetDTO"
+		parameterType="String">
+		select r_num,p.userid,
+		p.p_name,p.p_age,p.p_gender,p.p_type,r_content,p.p_num,p.p_photo,r.agree,requestid,m.phone
+		from pet p,request r, member m
+		where r.p_num=p.p_num and p.userid =
+		m.userid and requestid = #{requestid}
+	</select>
+
+
+
+	<select id="answer" resultType="RequestPetDTO" parameterType="String">
+		select r_num,r.userid as edid,p.userid,p.p_name,p.p_age,p.P_TYPE,p.P_AGE,r_content,p.p_gender,p.p_num,p.p_photo,r.agree,m.phone
+		from pet p, request r, member m
+		where requestid = p.userid and p.userid = m.userid and r.userid=#{userid}
+	</select>
+
+	<select resultType="ApplyPetDTO" parameterType="string" id="mypage">
+		select
+		p.userid,r.r_num,p.p_num,p_kkcnumber,p_name,p_age,p_gender,p_type,p_photo,p_feature,agree,r_content,phone
+		from pet p ,request r ,member m
+		where p.p_num=r.p_num and m.userid=p.userid and r.r_num = #{r_num}
+	</select>
+	
+	<select resultType="ApplyPetDTO" parameterType="string" id="yourpage">
+		select
+		p.userid,r.r_num,p.p_num,p_kkcnumber,p_name,p_age,p_gender,p_type,p_photo,p_feature,agree,r_content,phone
+		from pet p ,request r ,member m
+		where requestid = p.userid and m.userid=p.userid and r.r_num = #{r_num}
+	</select>
+
+
+	<delete id="delete" parameterType="string">
+		delete from request
+		where r_num
+		= #{r_num}
+	</delete>
+	
+	
+	<update parameterType="ApplyPetDTO" id="updateRequest">
+		update request set agree
+		=#{agree}
+		where r_num =#{r_num}
+	</update>
+
+</mapper>

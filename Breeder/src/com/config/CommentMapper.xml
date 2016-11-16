@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment_c">
+
+
+	<insert id="cowrite" parameterType="CommentDTO">
+		insert into comment_c(boardNum,commentNum,commentParentName,commentParentPassword,commentParentText,userid)
+		values ( #{boardNum},comment_c_seq.nextval,
+		#{commentParentName},#{commentParentPassword},#{commentParentText},#{userid})
+	</insert>
+
+
+	<select id="colist" resultType="CommentDTO" parameterType="int">
+		select boardNum, commentNum, commentParentName, commentParentPassword,
+		commentParentText, to_char(commentwriteday,'yyyy/mm/dd')
+		commentwriteday, c.userid
+		from comment_c c, myboard m
+		where m.num=c.boardNum and m.num = #{num}
+		order by commentNum desc
+	</select>
+
+	<select id="cototalCount" resultType="int">
+		select count(*)
+		from comment_c
+	</select>
+	<delete id="codelete" parameterType="int">
+		delete from comment_c
+		where commentNum = #{commentNum}
+	</delete>
+
+
+	<update id="coupdate" parameterType="CommentDTO">
+		update comment_c
+		set commentParentName=#{commentParentName},commentParentPassword=#{commentParentPassword},
+		commentParentText=#{commentParentText}
+		where commentNum = #{commentNum}
+	</update>
+
+	<select id="coretrieve" parameterType="map" resultType="CommentDTO">
+		select boardNum,commentNum,commentParentName, commentParentPassword, commentParentText,commentwriteday,userid
+		from comment_c
+		where commentNum = #{xxx}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

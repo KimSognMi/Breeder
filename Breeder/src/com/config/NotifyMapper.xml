@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notify">
+
+<select id="totalCount" resultType="int">
+		select count(*)
+		from notify
+	</select>
+
+	<insert parameterType="NotifyDTO" id="addNotify">
+		insert into
+		notify(
+		notify_num,userid,username,notifyReason,notifyContent,notifyrequest)
+		values(
+		notify_seq.nextval,#{userid},#{username},#{notifyReason},
+		#{notifyContent},#{notifyrequest})
+	</insert>
+
+	 <delete id="deleteNotify" parameterType="string">
+      delete from notify
+      where userid = #{userid}	
+    </delete>
+	
+	
+	<select id="list" resultType="NotifyDTO">
+	   select notify_num,username,userid,notifyReason,notifyCount,notifyContent,notifyrequest
+	   from notify order by notify_num asc     
+	</select>
+	
+	<update id="notifyCount" parameterType="String">
+      update notify 
+      set notifyCount = 1 + (select max(notifyCount) from notify where userid=#{userid})
+      where userid = #{userid} and notify_num = (select max(notify_num) from notify)
+    </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

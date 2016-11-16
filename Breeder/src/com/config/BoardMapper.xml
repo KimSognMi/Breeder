@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myboard">
+
+     <select id="search" 
+       parameterType="hashmap" resultType="BoardDTO">
+        select num, title, author, content,
+	         to_char(writeday,'yyyy/mm/dd') writeday,
+	         readcnt,boardCategory,boardpw
+	   from myboard 
+       <if test="searchName=='title'">
+          where title LIKE  '%'||#{searchValue}||'%'
+       </if>
+       <if test="searchName=='author'">
+         where author LIKE  '%'||#{searchValue}||'%'
+       </if>
+       
+     </select>
+     
+     <select id="Hsearch" 
+      parameterType="hashmap" resultType="BoardDTO">
+        select num, title, author, content,
+	         to_char(writeday,'yyyy/mm/dd') writeday,
+	         readcnt,boardCategory,boardpw 
+	   from myboard       
+       where boardCategory = '후기글'
+       order by num desc 
+       
+       
+     </select>
+     
+      <select id="Jsearch" 
+      parameterType="hashmap" resultType="BoardDTO">
+        select num, title, author, content,
+	         to_char(writeday,'yyyy/mm/dd') writeday,
+	         readcnt,boardCategory,boardpw 
+	   from myboard       
+       where boardCategory = '질문글'
+       order by num desc 
+       
+     </select>
+
+
+
+ <delete id="delete" parameterType="int">
+    delete from myboard
+     where num = #{num}
+ </delete>
+
+ <update id="update" parameterType="BoardDTO">
+      update myboard 
+      set title=#{title}, 
+          content=#{content}
+      where num = #{num}
+    </update>
+    
+    
+    <update id="readCnt" parameterType="int">
+      update myboard 
+      set readcnt = readcnt + 1
+      where num = #{num}
+    </update>
+
+    <select id="retrieve" 
+       parameterType="int" resultType="BoardDTO">
+        select num, title, author, content,
+	         to_char(writeday,'yyyy/mm/dd') writeday,
+	         readcnt,boardCategory,userid,boardpw
+	   from myboard 
+	   where num = #{num}
+     </select>
+
+
+    <insert id="write" parameterType="BoardDTO">
+     insert into myboard( num,title,author,content,boardCategory,userid,boardpw)
+     values ( myboard_seq.nextval, #{title},#{author},#{content},#{boardCategory},#{userid},#{boardpw}) 
+    </insert>
+
+
+	<select id="list" resultType="BoardDTO">
+	   select num, title, author, 
+	         to_char(writeday,'yyyy/mm/dd') writeday,
+	         readcnt,boardCategory,userid,boardpw
+	   from myboard order by num desc      
+	</select>
+	
+	<select id="totalCount" resultType="int">
+	 select count(*) 
+	 from myboard
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

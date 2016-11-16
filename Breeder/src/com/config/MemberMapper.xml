@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+
+	<select id="search" parameterType="hashmap" resultType="MemberPetDTO">
+		select m.m_num,m.username,m.userid,p.p_name,max(n.notifyCount) as notifyCount
+		from member m
+		left outer join pet p
+		on m.userid = p.userid
+		left outer join notify n
+		on m.userid = n.userid
+		<if test="searchName=='m.username'">
+			on m.username LIKE '%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName=='m.userid'">
+			on m.userid LIKE '%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName=='p.p_name'">
+			on p.p_name LIKE '%'||#{searchValue}||'%'
+		</if>
+		group by m.userid,m.m_num,m.username,p.p_name
+		
+
+	</select>
+
+
+
+	<select id="totalCount" resultType="int">
+		select count(*)
+		from member
+	</select>
+	<select resultType="MemberDTO" parameterType="hashmap" id="login">
+		select m_num,username,userid,passwd,phone,
+		post1,post2,addr1,addr2
+		from
+		member
+		where userid = #{userid} and passwd=#{passwd}
+	</select>
+
+	<insert parameterType="MemberDTO" id="addMember">
+		insert into
+		member(
+		m_num,username,userid,passwd,phone,post1,post2,addr1,addr2)
+		values(
+		member_seq.nextval,#{username},#{userid},#{passwd},
+		#{phone},#{post1},#{post2},#{addr1},#{addr2})
+	</insert>
+
+	<select resultType="MemberDTO" parameterType="string" id="mypage">
+		select
+		m_num,username,userid,passwd,phone,
+		post1,post2,addr1,addr2
+		from member
+		where userid = #{userid}
+	</select>
+
+	<select id="idCheck" parameterType="string" resultType="string">
+		select
+		userid
+		from member
+		where userid = #{userid}
+	</select>
+
+	<update parameterType="MemberDTO" id="updateMember">
+		update member set passwd
+		=#{passwd}, post1 = #{post1}, post2 = #{post2},
+		addr1 = #{addr1},
+		addr2= #{addr2}, phone = #{phone}
+		where userid =#{userid}
+	</update>
+
+	<delete id="deleteMember" parameterType="string">
+		delete from member
+		where
+		userid = #{userid}
+	</delete>
+
+
+	<select id="nearmedog" resultType="MemberDTO" parameterType="string">
+		select m_num,username,userid,passwd,phone,
+		post1,post2,addr1,addr2
+		from
+		member
+		where userid = #{userid}
+	</select>
+
+
+
+	<select id="mempetlist" resultType="MemberPetDTO">
+		select m.m_num,m.username,m.userid,p.p_name,max(n.notifyCount) as notifyCount
+		from member m
+		left outer join pet p
+		on m.userid = p.userid
+		left outer join notify n
+		on m.userid = n.userid
+		group by m.userid,m.m_num,m.username,p.p_name
+		order by m_num desc
+	</select>
+
+	<select id="memlist" resultType="MemberDTO">
+		select m_num, username, userid
+		from member order by m_num
+	</select>
+	<select id="memberListByCity" resultType="MemberPetSearchDTO">
+		select m.userid,p_num,p_name,addr1,addr2,p_kkcnumber,p_age,p_gender,p_type,p_photo
+		from member m, pet p
+		where m.userid = p.userid and addr1 like '%'||#{keyword}||'%'
+		<if test="p_gender!=null and p_type !=null" >
+			 and p_gender = #{p_gender} and p_type= #{p_type}
+       </if>
+	</select>
+	
+	<select id="nopetnomapmember" resultType="NoPetNoMapMemberDTO">
+		select p.p_num
+		from member m Left outer join pet p
+		on m.userid=p.userid
+	</select>
+	
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
