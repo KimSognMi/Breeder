@@ -77,7 +77,7 @@
 
 			<c:if test="${sessionScope.login!=null}">
 				
-					<c:if test="${login.userid =='adminkongju@naver.com'}">관리자계정
+					<c:if test="${login.userid =='adminkongju@naver.com'}">
 						<ul class="links">
 							<li><a href="index.jsp">HOME</a></li>
 							<li><a href="about.jsp">ABOUT US</a></li>
@@ -118,7 +118,7 @@
 				
 				
 								
- ${sessionScope.list.size()} 
+
  		
 				<c:if test="${sessionScope.list.size()==0}">
 				
@@ -155,12 +155,11 @@
 				<span class="image"> <img src="images/ff.jpg" alt="" />
 				</span>
 				<header class="major">
-					<h1>Board</h1>
+					<h1>Board Manage</h1>
 				</header>
 				<div class="content">
 					<p>
-						Lorem ipsum dolor sit amet nullam consequat<br /> sed veroeros.
-						tempus adipiscing nulla.
+						게시글을 관리합니다.
 					</p>
 				</div>
 			</div>

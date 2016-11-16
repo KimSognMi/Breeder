@@ -55,7 +55,7 @@
 
 			<c:if test="${sessionScope.login!=null}">
 				
-					<c:if test="${login.userid =='adminkongju@naver.com'}">관리자계정
+					<c:if test="${login.userid =='adminkongju@naver.com'}">
 						<ul class="links">
 					<li><a href="index.jsp">HOME</a></li>
 					<li><a href="about.jsp">ABOUT US</a></li>
@@ -129,10 +129,10 @@
 				<span class="image"> <img src="images/rr.jpg" alt="" />
 				</span>
 				<header class="major">
-					<h1>Welcome</h1>
+					<h1>Detail</h1>
 				</header>
 				<div class="content">
-					<p>Please login.</p>
+					<p>게시글 수정, 삭제할 수 있습니다.</p>
 				</div>
 			</div>
 		</section>

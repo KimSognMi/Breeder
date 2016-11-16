@@ -54,7 +54,7 @@
 
 			<c:if test="${sessionScope.login!=null}">
 				
-					<c:if test="${login.userid =='adminkongju@naver.com'}">관리자계정
+					<c:if test="${login.userid =='adminkongju@naver.com'}">
 						<ul class="links">
 					<li><a href="index.jsp">HOME</a></li>
 					<li><a href="about.jsp">ABOUT US</a></li>
@@ -127,10 +127,10 @@
 				<span class="image"> <img src="images/rr.jpg" alt="" />
 				</span>
 				<header class="major">
-					<h1>Welcome</h1>
+					<h1>Write</h1>
 				</header>
 				<div class="content">
-					<p>Please login.</p>
+					<p>게시글을 작성해주세요.</p>
 				</div>
 			</div>
 		</section>
@@ -149,26 +149,7 @@ h1 {
 <script>
 	$(document).ready(function() {
 		$("form").on("submit", function() {
-			/* /* 공백 입력 못하도록 유효성 검가 */
-			/* if ("" == $(".inputTitle").val()) {
-				$(".titleHelper").text("제목을 입력해주세요");
-				$(".contentHelper").text("");
-				$(".pwHelper").text("");
-			} else if ("" == $(".inputContent").val()) {
-				$(".titleHelper").text("");
-				$(".contentHelper").text("내용을 입력해주세요");
-				$(".pwHelper").text("");
-			} else if ("" == $(".inputPw").val()) {
-				$(".titleHelper").text("");
-				$(".contentHelper").text("");
-				$(".pwHelper").text("비밀번호를 입력해주세요");
-				/* } else if($(".inputPw").val() == ${retrieve.boardpw}){
-					
-				} */
-
-			/*} else {
-				alert("정상 등록되었습니다."); */
-			/*} */
+		
 			
 			 
 			if($("#title").val()==''){

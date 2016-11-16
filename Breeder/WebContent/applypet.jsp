@@ -90,7 +90,7 @@
 
 			<c:if test="${sessionScope.login!=null}">
 				
-					<c:if test="${login.userid =='adminkongju@naver.com'}">관리자계정
+					<c:if test="${login.userid =='adminkongju@naver.com'}">
 						<ul class="links">
 							<li><a href="index.jsp">HOME</a></li>
 							<li><a href="about.jsp">ABOUT US</a></li>
@@ -173,7 +173,7 @@
 						${login.username}님이 신청한 펫입니다.
 					</p>
 					<ul class="actions">
-						<li><a href="#two" class="button next scrolly">JOIN US!</a></li>
+						<li><a href="#two" class="button next scrolly">GO!</a></li>
 					</ul>
 				</div>
 			</div>
@@ -281,8 +281,10 @@
 								<center>
 								${mydog.phone}
 								</center>
+								<br>
 							</ul>
 						</c:if> 
+						
 <c:if test="${mydog.agree=='대기중'}">
 
 						<div class="field2">

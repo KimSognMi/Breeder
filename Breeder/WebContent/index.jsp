@@ -19,12 +19,7 @@
 <!--[if lte IE 8]><link rel="styleshesdfet" href="assasdfets/css/ie8.css" /><![endif]-->
 </head> 
 <body>
- 
-<%--  <c:if test="${result!=null }">
- <script type="text/javascript">
-     alert("회원가입을 환영합니다.");fdff
-  </script>
-  </c:if> --%>
+
     
 	<!-- Wrapper -->
 	<div id="wrapper">
@@ -60,18 +55,19 @@
 
 			<c:if test="${sessionScope.login!=null}">
 				
-					<c:if test="${login.userid =='adminkongju@naver.com'}">관리자계정
+					<c:if test="${login.userid =='adminkongju@naver.com'}">
 						<ul class="links">
-							<li><a href="index.jsp">HOME</a></li>
-							<li><a href="about.jsp">ABOUT US</a></li>
-							<li><a href="BoardListServlet2">BOARD</a></li>
-							<li><a href="PetCafeFormServlet">NEAR ME NOW</a></li>
-							<li><a href="PetSearchServlet">NEAR ME DOG</a></li>
+					<li><a href="index.jsp">HOME</a></li>
+					<li><a href="about.jsp">ABOUT US</a></li>
+					<li><a href="BoardListServlet2">게시판관리</a></li>
+					<li><a href="nearmenow.jsp">편의시설 검색</a></li>
+					<li><a href="PetSearchServlet">근처 애견 검색</a></li>
+					
+				</ul>
 						
-						</ul>
 						<ul class="actions vertical">
-							<li><a href="MemberListServlet" class="button special fit">Manage Member</a></li>
-							<li><a href="LogOutServlet" class="button fit">Log Out</a></li>
+							<li><a href="MemberListServlet" class="button special fit">회원관리</a></li>
+							<li><a href="LogOutServlet" class="button fit">LogOut</a></li>
 						</ul>
 				
 				
@@ -106,15 +102,15 @@
 				<c:if test="${sessionScope.list.size()==0 or empty sessionScope.list}">
 				
 					<ul class="links">
-						<li><a href="index.jsp">HOME</a></li>
-						<li><a href="about.jsp">ABOUT US</a></li>
-						<li><a href="BoardListServlet">BOARD</a></li>
-						<li><a href="PetCafeFormServlet">NEAR ME NOW</a></li>
-						<li><a href="PetSearchServlet">NEAR ME DOG</a></li>
+					<li><a href="index.jsp">HOME</a></li>
+					<li><a href="about.jsp">ABOUT US</a></li>
+					<li><a href="LoginFormServlet">후기 & 질문</a></li>
+					<li><a href="LoginFormServlet">편의시설 검색</a></li>
+					<li><a href="LoginFormServlet">근처 애견 검색</a></li>
 						
 					</ul>
 					<ul class="actions vertical">
-						<li><a href="PetFormServlet" class="button fit">PET 등록</a></li>
+						<li><a href="PetFormServlet" class="button fit">애견 등록</a></li>
 						<li><a href="MyPageServlet" class="button special fit">MyPage</a></li>
 						<li><a href="LogOutServlet" class="button fit">LogOut</a></li>
 					</ul>
@@ -138,7 +134,7 @@
 				</header>
 				<div class="content">
 					<p>
-						안녕하세요<br> SMART BREEDER
+						안녕하세요!<br> " SMART BREEDER " 입니다.
 					</p>
 					<ul class="actions">
 						<li><a href="#one" class="button next scrolly">Get

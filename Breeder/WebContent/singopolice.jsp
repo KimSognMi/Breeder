@@ -312,8 +312,8 @@
 						<option value="">- Category -</option>
 						<option value="욕설">욕설</option>
 						<option value="약속 파기">약속 파기</option>
-						<option value="1">Administration</option>
-						<option value="1">Human Resources</option>
+						<option value="광고">광고</option>
+						<option value="도배">도배</option>
 					</select>
 				</div>
 			</div>

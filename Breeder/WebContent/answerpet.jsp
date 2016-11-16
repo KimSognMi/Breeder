@@ -107,7 +107,7 @@
 
 			<c:if test="${sessionScope.login!=null}">
 				
-					<c:if test="${login.userid =='adminkongju@naver.com'}">관리자계정
+					<c:if test="${login.userid =='adminkongju@naver.com'}">
 						<ul class="links">
 							<li><a href="index.jsp">HOME</a></li>
 							<li><a href="about.jsp">ABOUT US</a></li>
@@ -190,7 +190,7 @@
 						${login.username}님께 신청한 펫입니다.
 					</p>
 					<ul class="actions">
-						<li><a href="#two" class="button next scrolly">JOIN US!</a></li>
+						<li><a href="#two" class="button next scrolly">GO!</a></li>
 					</ul>
 				</div>
 			</div>
@@ -318,7 +318,7 @@
 							
 					<c:if test="${yourdog.agree=='대기중'}">
 						<input type="radio" id="수락" name="agree" value="수락">
-						<label for="수락">수락</label> 
+						<label for="수락" style="margin-left: 360px;">수락</label> 
 						<input type="radio" id="거부" name="agree" value="거부">
 						<label for="거부">거부</label>
 						<%-- updateServlet 써야할듯! --%>

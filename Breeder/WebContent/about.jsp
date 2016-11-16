@@ -53,7 +53,7 @@
 
 			<c:if test="${sessionScope.login!=null}">
 				
-					<c:if test="${login.userid =='adminkongju@naver.com'}">관리자계정
+					<c:if test="${login.userid =='adminkongju@naver.com'}">
 						<ul class="links">
 							<li><a href="index.jsp">HOME</a></li>
 							<li><a href="about.jsp">ABOUT US</a></li>
@@ -154,8 +154,8 @@
 						<!-- Two -->
 							<section id="two" class="spotlights">
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic08.jpg" alt="" data-position="center center" />
+									<a href="#" class="image">
+										<img src="images/all.jpg" alt="" data-position="center center" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -170,8 +170,8 @@
 									</div>
 								</section>
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic09.jpg" alt="" data-position="top center" />
+									<a href="#" class="image">
+										<img src="images/dogdog.jpg" alt="" data-position="top center" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -186,8 +186,8 @@
 									</div>
 								</section>
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
+									<a href="#" class="image">
+										<img src="images/ccc.jpg" alt="" data-position="25% 25%" />
 									</a>
 									<div class="content">
 										<div class="inner">
@@ -219,7 +219,7 @@
 					</div>
 
 				<!-- Contact -->
-					<section id="contact">
+					<!-- <section id="contact">
 						<div class="inner">
 							<section>
 								<form method="post" action="#">
@@ -261,7 +261,7 @@
 								
 							</section>
 						</div>
-					</section>
+					</section> -->
 
 				<!-- Footer -->
 					<footer id="footer">

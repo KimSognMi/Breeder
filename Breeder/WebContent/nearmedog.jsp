@@ -267,7 +267,7 @@
 
 		<!-- Menu -->
 		<nav id="menu">
-			<c:if test="${login.userid =='adminkongju@naver.com'}">관리자계정
+			<c:if test="${login.userid =='adminkongju@naver.com'}">
 				<ul class="links">
 					<li><a href="index.jsp">HOME</a></li>
 					<li><a href="about.jsp">ABOUT US</a></li>
@@ -674,7 +674,7 @@
 											<td>${xxx.userid}</td>
 											<td>${xxx.p_kkcnumber}</td>
 											<td><a
-												href="javascript:window.open('PetTreeServlet?p_num=${xxx.p_num}','childName','width=840,height=550')">${xxx.p_name}</a></td>
+												href="javascript:window.open('PetTreeServlet?p_num=${xxx.p_num}','childName','width=940,height=550')">${xxx.p_name}</a></td>
 											<td>${xxx.p_age}</td>
 											<td>${xxx.p_gender}</td>
 											<td>${xxx.p_type}</td>
